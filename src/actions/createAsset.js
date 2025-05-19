@@ -1,3 +1,4 @@
+/*
 import { apiCall, showSuccessDialog, showErrorDialog } from 'nexus-module';
 
 export const createAsset = async (assetData, onSuccess = () => {}, onError = () => {}) => {
@@ -41,3 +42,4 @@ export const createAsset = async (assetData, onSuccess = () => {}, onError = () 
     throw error;
   }
 };
+*/

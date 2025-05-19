@@ -13,9 +13,6 @@ import {
     showSuccessDialog,
     showErrorDialog,
     TextField,
-    Button,
-    Modal,
-    Select,
 } from 'nexus-module';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -30,93 +27,17 @@ const SearchField = styled(TextField)({
     maxWidth: 200,
   });
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-bottom: 16px;
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 16px;
-`;
-
-const FormLabel = styled.label`
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-`;
-
 export default function NewsFeed() {
 
     const inputValue = useSelector((state) => state.ui.inputValue);
-    //const catalogue = useSelector((state) => state.ui.catalogue);
-    const [catalogue, setCatalogue] = useState([]);
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [newAsset, setNewAsset] = useState({
-        name: '',
-        category: '',
-        supplier: '',
-        description: '',
-        url: '',
-        status: 'active',
-        distordia: 'yes'
-    });
-    const [isCreating, setIsCreating] = useState(false);
+    const [news, setNews] = useState([]);
 
     const dispatch = useDispatch();
 
-    const handleOpenModal = () => setIsModalOpen(true);
-    const handleCloseModal = () => setIsModalOpen(false);
-    
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewAsset(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-    
-    const handleCreateAsset = async () => {
-        if (isCreating) return;
-        
-        try {
-            setIsCreating(true);
-            
-            await createAsset(
-                newAsset,
-                () => {
-                    // On success
-                    setNewAsset({
-                        name: '',
-                        category: '',
-                        supplier: '',
-                        description: '',
-                        url: '',
-                        status: 'active',
-                        distordia: 'yes'
-                    });
-                    setIsModalOpen(false);
-                    fetchCatalogue();
-                }
-            );
-            
-        } catch (error) {
-            // Error already handled by createAsset
-            console.error('Asset creation error:', error);
-        } finally {
-            setIsCreating(false);
-        }
-    };
-
-    const fetchCatalogue = async () => {
+    const fetchAssets = async () => {
         
         // distordia-catalogue assets shall have the following fields:
-        // 1. category
-        // 2. supplier
-        // 3. description
-        // 4. url (link to the datasheet)
+        // 1. 
         // 5. status (active/inactive)
         // 6. distordia (yes/no)
 
@@ -128,15 +49,15 @@ export default function NewsFeed() {
                 //}
             ).catch((error) => {
                 showErrorDialog({
-                    message: 'Cannot get catalogue',
+                    message: 'Cannot get assets',
                     note: error?.message || 'Unknown error',
                 });
             });
             
             if (result) {
-                const resultDistordia = result.filter((item) => item.distordia === 'yes');
-                const resultActive = resultDistordia.filter((item) => item.status === 'active');
-                setCatalogue(resultActive);
+                const resultNews = result.filter((item) => item.distordiaNews === 'yes');
+                const resultActive = resultNews.filter((item) => item.status === 'active');
+                setNews(resultActive);
             }
 
         } catch (error) {
@@ -149,7 +70,7 @@ export default function NewsFeed() {
 
     useEffect(() => {
 
-        fetchCatalogue();
+        fetchAssets();
 
     }, []);
 
@@ -175,12 +96,12 @@ export default function NewsFeed() {
                  }
             );
             showSuccessDialog({
-                message: 'Tritium Metrics',
+                message: 'Asset Details',
                 note: JSON.stringify(result, null, 2),
             });
         } catch (error) {
             showErrorDialog({
-                message: 'Cannot get metrics',
+                message: 'Cannot get asset details',
                 note: error?.message || 'Unknown error',
             });
         } finally {
@@ -188,7 +109,7 @@ export default function NewsFeed() {
         }
     };
 
-    const renderCatalogueTable = (data) => {
+    const renderNewsTable = (data) => {
         if (!Array.isArray(data)) {
           return null;
         }
@@ -198,10 +119,7 @@ export default function NewsFeed() {
           onClick={() => viewAsset(item.address)}
           >
           <td>{ item.address }</td>
-          <td>{ item.category }</td>
-          <td>{ item.supplier }</td>
-          <td>{ item.description }</td>
-          <td>{ item.url }</td>
+          <td>{ item.text }</td>
           </CatalogueTable>
         ));
       };
@@ -219,9 +137,9 @@ export default function NewsFeed() {
         </SingleColRow>
         <SingleColRow>
             <div className="text-center">
-                <FieldSet legend="Catalogue">
+                <FieldSet legend="News Feed">
                     <tbody>
-                        {renderCatalogueTable(catalogue)}
+                        {renderNewsTable(news)}
                     </tbody>
                 </FieldSet>
             </div>
