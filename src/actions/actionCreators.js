@@ -10,6 +10,16 @@ export const updateInput = (inputValue) => ({
   payload: inputValue,
 });
 
+export const switchExtNamespace = (namespace) => ({
+  type: TYPE.SWITCH_EXT_NAMESPACE,
+  payload: namespace,
+});
+
+export const switchMyNamespace = (namespace) => ({
+  type: TYPE.SWITCH_MY_NAMESPACE,
+  payload: namespace,
+});
+
 /*
 export const showConnections = () => ({
   type: TYPE.SHOW_CONNECTIONS,

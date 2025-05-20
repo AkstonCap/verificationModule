@@ -21,7 +21,7 @@ import {
     updateInput,
 } from 'actions/actionCreators';
 
-import { createAsset } from 'actions/createAsset';
+//import { createAsset } from 'actions/createAsset';
 
 const SearchField = styled(TextField)({
     maxWidth: 200,
