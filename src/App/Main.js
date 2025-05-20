@@ -12,9 +12,13 @@ import {
   apiCall,
   showErrorDialog,
   showSuccessDialog,
+  HorizontalTab,
 } from 'nexus-module';
 
 import NewsFeed from './news';
+import NamespaceFeed from './namespace';
+import Profile from './profile';
+import { switchTab } from '../actions/actionCreators';
 
 export default function Main() {
   const activeTab = useSelector((state) => state.ui.activeTab);
@@ -29,29 +33,29 @@ export default function Main() {
       <div className="text-center">
         <HorizontalTab.TabBar>
           <HorizontalTab
-            active={activeTab === 'News'}
-            onClick={() => handleSwitchTab('News')}
+            active={activeTab === 'NewsFeed'}
+            onClick={() => handleSwitchTab('NewsFeed')}
           >
             News feed
           </HorizontalTab>
           <HorizontalTab
-            active={activeTab === 'Namespace'}
-            onClick={() => handleSwitchTab('Namespace')}
+            active={activeTab === 'NamespaceFeed'}
+            onClick={() => handleSwitchTab('NamespaceFeed')}
           >
             Namespace feed
           </HorizontalTab>
           <HorizontalTab
-            active={activeTab === 'MyProfile'}
-            onClick={() => handleSwitchTab('MyProfile')}
+            active={activeTab === 'Profile'}
+            onClick={() => handleSwitchTab('Profile')}
           >
             My Profile
           </HorizontalTab>
         </HorizontalTab.TabBar>
       </div>
 
-      <div>{activeTab === 'News' && <News />}</div>
-      <div>{activeTab === 'Namespace' && <Namespace />}</div>
-      <div>{activeTab === 'MyProfile' && <MyProfile />}</div>
+      <div>{activeTab === 'NewsFeed' && <NewsFeed />}</div>
+      <div>{activeTab === 'NamespaceFeed' && <NamespaceFeed />}</div>
+      <div>{activeTab === 'Profile' && <Profile />}</div>
 
     </Panel>
   );

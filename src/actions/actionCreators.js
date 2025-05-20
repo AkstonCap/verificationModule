@@ -10,6 +10,7 @@ export const updateInput = (inputValue) => ({
   payload: inputValue,
 });
 
+/*
 export const showConnections = () => ({
   type: TYPE.SHOW_CONNECTIONS,
 });
@@ -17,3 +18,4 @@ export const showConnections = () => ({
 export const hideConnections = () => ({
   type: TYPE.HIDE_CONNECTIONS,
 });
+*/
