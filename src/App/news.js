@@ -56,8 +56,8 @@ export default function NewsFeed() {
             });
             
             if (result) {
-                const resultNews = result.filter((item) => item.distordiaNews === 'yes');
-                const resultActive = resultNews.filter((item) => item.status === 'active');
+                const resultNews = result.filter((item) => item.distordia === '1.1');
+                //const resultActive = resultNews.filter((item) => item.status === '1');
                 setNews(resultActive);
             }
 
