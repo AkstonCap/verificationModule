@@ -1,10 +1,9 @@
-/*
-import { apiCall, showSuccessDialog, showErrorDialog } from 'nexus-module';
+import { secureApiCall, showSuccessDialog, showErrorDialog } from 'nexus-module';
 
 export const createAsset = async (assetData, onSuccess = () => {}, onError = () => {}) => {
   try {
     // Validate required fields
-    if (!assetData.name || !assetData.category || !assetData.supplier) {
+    if (!assetData.name || !assetData.type) {
       showErrorDialog({
         message: 'Missing required fields',
         note: 'Please fill in name, category and supplier fields'
@@ -12,15 +11,12 @@ export const createAsset = async (assetData, onSuccess = () => {}, onError = () 
       return;
     }
     
-    const result = await apiCall('assets/create/asset', {
+    const result = await secureApiCall('assets/create/asset', {
       name: assetData.name,
       data: JSON.stringify({
-        category: assetData.category,
-        supplier: assetData.supplier,
-        description: assetData.description,
-        url: assetData.url,
-        status: assetData.status,
-        distordia: assetData.distordia
+        name: assetData.name,
+        text: assetData.text,
+        distordia: assetData.type,
       })
     });
     
@@ -42,4 +38,3 @@ export const createAsset = async (assetData, onSuccess = () => {}, onError = () 
     throw error;
   }
 };
-*/
