@@ -1,14 +1,14 @@
 # Content verification module
 
-/*### How to install module
+### How to install module
 
 1. Download and install the [latest version of Nexus Wallet](https://github.com/Nexusoft/NexusInterface/releases/latest) if you haven't.
 2. Go to latest verified release of the module (currently not verified)
-3. Download zip folder "dex_module@0.2.1.zip"
+3. Download zip folder "verificationModule@0.1.0.zip" (currently not released)
 4. Go to the Nexus Wallet -> Settings -> Modules
-5. Import "dex_module@0.2.1.zip" in the "Add module" box
+5. Import "verificationModule@0.1.0.zip" in the "Add module" box
 6. Click "Install module" in pop-up.
-*/
+
 ### How to install unverified beta- or official releases of this module (not yet verified by Nexus DAO dev team)
 
 1. Download and install the [latest version of Nexus Wallet](https://github.com/Nexusoft/NexusInterface/releases/latest) if you haven't.
