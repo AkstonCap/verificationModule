@@ -1,4 +1,4 @@
-# Distordia News module
+# Content verification module
 
 ### How to install module
 
