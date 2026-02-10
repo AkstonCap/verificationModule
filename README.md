@@ -1,93 +1,135 @@
-# Content Verification Module
+<p align="center">
+  <img src="dist/verification-logo.svg" alt="Distordia Content Verification" width="80" />
+</p>
 
-An onchain content verification module for the [Nexus blockchain](https://nexus.io). Register content as assets using the [Distordia Content Standard](docs/content-standard.json) and verify URL authenticity against creator identity (genesis ID or namespace).
+<h1 align="center">Distordia Content Verification</h1>
+
+<p align="center">
+  An on-chain content verification module for the <a href="https://nexus.io">Nexus Wallet</a>.<br />
+  Register, verify and track content authenticity on the Nexus blockchain.
+</p>
+
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-orange" />
+  <img alt="Wallet" src="https://img.shields.io/badge/Nexus%20Wallet-%E2%89%A5%203.1.5-blue" />
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-green" />
+</p>
+
+---
 
 ## Overview
 
-Content creators can register their published content (articles, videos, images, audio, documents) as blockchain assets on Nexus. Anyone can then verify whether a URL was registered by the expected creator, protecting against impersonation and fake content.
-
-This module runs as a [Nexus Wallet Module](https://github.com/Nexusoft/NexusInterface) and can also be used via [distordia.com/content-verification](https://distordia.com/content-verification).
+Distordia Content Verification lets creators register their content (articles, media, documents) as on-chain assets following the **Distordia content standard**, and lets anyone verify the authenticity and provenance of a URL against creator identity on the Nexus blockchain.
 
 ## Features
 
-- **URL Verification**: Enter any URL to check if it is registered on the Nexus blockchain
-- **Creator Verification**: Optionally provide a genesis ID or namespace to confirm the URL was registered by a specific creator
-- **Content Registration**: Logged-in users can register their content as onchain assets following the Distordia content standard
-- **My Assets**: View and manage all content assets you have registered
-- **No Wallet Required for Verification**: Read-only verification works without logging in
-- **Distordia Content Standard v1.0.0**: Assets follow a defined schema with fields for URL, title, author, publisher, content type, hash, and more
+| Feature | Description |
+|---|---|
+| **News Feed** | Browse registered content assets from the blockchain |
+| **Namespace Feed** | View content scoped to specific Nexus namespaces *(WIP)* |
+| **My Profile** | Manage your own registered content *(WIP)* |
+| **Asset Creation** | Register new content as on-chain assets via the Nexus API |
+| **Asset Inspection** | Click any listed asset to view full on-chain details |
+| **Following** | Follow users and namespaces to track their content |
 
-## How It Works
+## Distordia Content Standard
 
-### Verification (no login required)
+Content assets are registered with structured JSON metadata:
 
-1. Open the **Verify** tab
-2. Enter the URL you want to verify
-3. Optionally enter a genesis ID or namespace to check against a specific creator
-4. Click **Verify** -- the module queries the Nexus blockchain for content assets matching the URL
-5. Results show whether the URL is registered, by whom, and with what metadata
-6. If a creator identifier is provided, the module confirms whether the registration matches
-
-### Registration (login required)
-
-1. Open the **Register** tab (requires Nexus Wallet login)
-2. Fill in the content details: URL (required), title (required), and optional fields (author, publisher, date, content type, hash, language, license, keywords)
-3. Click **Register Content** -- the module creates a JSON-format asset on the Nexus blockchain following the Distordia content standard
-4. The asset is permanently recorded onchain, tied to your genesis ID
-
-### Asset Standard
-
-Content assets are created using the Nexus `assets/create/asset` API with `format=JSON`. Fields follow the [Distordia Content Verification Standard v1.0.0](docs/content-standard.json):
-
-```json
-{
-    "distordia-type": "content",
-    "status": "official",
-    "url": "https://example.com/news/article-12345",
-    "title": "Breaking: Major Discovery in Climate Research",
-    "author": "Jane Smith",
-    "publisher": "Example News",
-    "published": "2026-01-15",
-    "hash": "sha256:a1b2c3d4e5f6...",
-    "content-type": "article",
-    "lang": "en",
-    "license": "CC-BY-4.0",
-    "keywords": "climate,research,science"
-}
+```jsonc
+[
+  { "name": "distordia-type", "value": "content",   "mutable": false },
+  { "name": "url",            "value": "https://…",  "mutable": false },
+  { "name": "title",          "value": "My Article", "mutable": false },
+  { "name": "status",         "value": "official",   "mutable": true  },
+  // Optional: author, publisher, published, hash, content-type,
+  //           lang, license, keywords, supersedes
+]
 ```
 
-Required fields: `distordia-type`, `url`, `title`. All other fields are optional.
+## Tech Stack
+
+- **React 18** + **Redux** — UI & state management
+- **Emotion** — CSS-in-JS styling
+- **Webpack 5** — bundling
+- **nexus-module** — Nexus Wallet module SDK (API calls, secure transactions, theming)
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) ≥ 16
+- [Nexus Wallet](https://github.com/Nexusoft/NexusInterface/releases/latest) ≥ 3.1.5
+
+### Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server (hot-reload on localhost:24011)
+npm run dev
+```
+
+Then load the module in your wallet via the development `nxs_package.dev.json`.
+
+### Production Build
+
+```bash
+npm run build
+```
+
+The distributable output is written to `dist/`.
 
 ## Installation
 
-### From verified release
+### From a verified release *(coming soon)*
 
-1. Download and install the [latest Nexus Wallet](https://github.com/Nexusoft/NexusInterface/releases/latest).
-2. Download the module zip from the latest verified release.
-3. In Nexus Wallet, go to Settings > Modules.
-4. Import the zip file in the "Add module" section and click "Install module".
+1. Download the latest `.zip` from the [Releases](https://github.com/AkstonCap/verificationModule/releases/latest) page.
+2. Open Nexus Wallet → **Settings → Modules**.
+3. Drag & drop the `.zip` into **Add module** and click **Install module**.
 
-### From source (development)
+### From source (developer mode)
 
-1. Download and install the [latest Nexus Wallet](https://github.com/Nexusoft/NexusInterface/releases/latest).
-2. Clone or download this repository.
-3. Run `npm install` then `npm run build` in the project directory.
-4. In Nexus Wallet (Developer mode), go to Settings > Modules, drag and drop the project folder into "Add module" and click "Install module".
-5. The module will appear in the bottom navigation bar.
+1. Clone the repository and run `npm install && npm run build`.
+2. Open Nexus Wallet in **Developer mode** → **Settings → Modules**.
+3. Drag & drop the project folder into **Add module** and click **Install module**.
+4. The module will appear in the bottom navigation bar.
 
-## Development
+## Project Structure
 
-```bash
-npm install
-npm run dev     # Start dev server on port 24011
-npm run build   # Production build to dist/
+```
+src/
+├── index.js                 # Entry point (React 18 createRoot)
+├── configureStore.js        # Redux store setup
+├── App/
+│   ├── index.js             # App root (ModuleWrapper + theme)
+│   ├── Main.js              # Tab layout & panel chrome
+│   ├── news.js              # News feed tab
+│   ├── namespace.js          # Namespace feed tab (WIP)
+│   └── profile.js            # Profile tab (WIP)
+├── actions/
+│   ├── actionCreators.js    # Redux action creators
+│   ├── types.js             # Action type constants
+│   ├── createAsset.js       # Asset registration via secureApiCall
+│   └── fetchAssets.js       # Namespace-scoped asset fetching
+├── components/
+│   ├── Logo.js              # Inline SVG brand logo
+│   └── styles.js            # Shared styled components
+└── reducers/
+    ├── ui/                  # Active tab, search input
+    └── settings/            # Following list, namespaces
 ```
 
-## API Endpoints Used
+## Roadmap
 
-| Operation | Endpoint | Auth |
-|-----------|----------|------|
-| Verify content by URL | `register/list/assets:asset` with WHERE clause | None |
-| Register content | `assets/create/asset` (JSON format) | PIN required |
-| List my assets | `assets/list/asset` with WHERE clause | Session required |
-| Get asset details | `register/get/assets:asset` | None |
+- [ ] Full content verification flow (URL → on-chain lookup → result display)
+- [ ] Namespace feed implementation
+- [ ] Profile page with user's own assets
+- [ ] Content hash verification (SHA-256 / BLAKE2b)
+- [ ] Nexus DAO module verification
+
+## License
+
+[MIT](LICENSE) © AkstonCap
+
