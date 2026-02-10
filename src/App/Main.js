@@ -29,7 +29,7 @@ export default function Main() {
   };
 
   return (
-    <Panel title="Distordia news" icon={{ url: 'react.svg', id: 'icon' }}>
+    <Panel title="Distordia content verification" icon={{ url: 'react.svg', id: 'icon' }}>
       <div className="text-center">
         <HorizontalTab.TabBar>
           <HorizontalTab

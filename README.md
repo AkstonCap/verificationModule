@@ -1,5 +1,47 @@
 # Content verification module
 
+A blockchain-powered application for verifying content authenticity and provenance on the Nexus blockchain.
+
+## Overview
+
+Content Verification allows users to check whether specific content (articles, documents, media, etc.) has been registered and verified by creators on the Nexus blockchain. By searching for a URL, users can instantly confirm if content is authentic and see detailed metadata about its registration.
+
+## Features
+
+- **URL-based Verification**: Search for any URL to check if it's registered on the blockchain
+- **Instant Authentication**: Real-time verification against the Nexus blockchain
+- **Creator Information**: Display creator details including genesis address and username
+- **Registration Details**: View registration and modification timestamps
+- **Asset Metadata**: See all additional metadata attached to the content asset
+- **No Wallet Required**: Read-only operation—no authentication or wallet connection needed
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+
+## How It Works
+
+### Verification Process
+
+1. User enters a URL in the search form
+2. App queries the Nexus blockchain for registered content assets
+3. Searches for assets with `distordia: "content"` attribute matching the provided URL
+4. Displays verification results with creator and registration details
+5. Shows full asset metadata if content is verified
+
+### Asset Standard
+
+Content assets follow this structure:
+
+```json
+{
+    "distordia-type": "content",
+    "url": "https://example.com/article",
+    "Title": "Article Title",
+    "Author": "Author Name",
+    "Description": "Article description",
+    "Date": "Publication date",
+    // ... additional metadata
+}
+```
+
 ### How to install module
 
 1. Download and install the [latest version of Nexus Wallet](https://github.com/Nexusoft/NexusInterface/releases/latest) if you haven't.
