@@ -1,7 +1,7 @@
 {
   "name": "content_verification",
   "displayName": "Content Verification",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "targetWalletVersion": "3.1.5",
   "description": "Onchain content verification module for the Nexus blockchain. Register content as assets using the Distordia content standard, and verify URL authenticity against creator identity (genesis ID or namespace).",
   "type": "app",

@@ -1,6 +1,6 @@
 {
   "name": "content_verification",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Onchain content verification module for Nexus blockchain",
   "devDependencies": {
     "@babel/core": "^7.24.9",
