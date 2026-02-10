@@ -1,23 +1,12 @@
-import { useState } from 'react';
-import styled from '@emotion/styled';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Panel,
-  Switch,
-  Tooltip,
-  TextField,
-  Button,
-  FieldSet,
-  confirm,
-  apiCall,
-  showErrorDialog,
-  showSuccessDialog,
   HorizontalTab,
 } from 'nexus-module';
 
-import NewsFeed from './news';
-import NamespaceFeed from './namespace';
-import Profile from './profile';
+import VerifyContent from './VerifyContent';
+import RegisterContent from './RegisterContent';
+import MyAssets from './MyAssets';
 import { switchTab } from '../actions/actionCreators';
 
 export default function Main() {
@@ -29,34 +18,33 @@ export default function Main() {
   };
 
   return (
-    <Panel title="Distordia content verification" icon={{ url: 'react.svg', id: 'icon' }}>
+    <Panel title="Content Verification" icon={{ url: 'react.svg', id: 'icon' }}>
       <div className="text-center">
         <HorizontalTab.TabBar>
           <HorizontalTab
-            active={activeTab === 'NewsFeed'}
-            onClick={() => handleSwitchTab('NewsFeed')}
+            active={activeTab === 'Verify'}
+            onClick={() => handleSwitchTab('Verify')}
           >
-            News feed
+            Verify
           </HorizontalTab>
           <HorizontalTab
-            active={activeTab === 'NamespaceFeed'}
-            onClick={() => handleSwitchTab('NamespaceFeed')}
+            active={activeTab === 'Register'}
+            onClick={() => handleSwitchTab('Register')}
           >
-            Namespace feed
+            Register
           </HorizontalTab>
           <HorizontalTab
-            active={activeTab === 'Profile'}
-            onClick={() => handleSwitchTab('Profile')}
+            active={activeTab === 'MyAssets'}
+            onClick={() => handleSwitchTab('MyAssets')}
           >
-            My Profile
+            My Assets
           </HorizontalTab>
         </HorizontalTab.TabBar>
       </div>
 
-      <div>{activeTab === 'NewsFeed' && <NewsFeed />}</div>
-      <div>{activeTab === 'NamespaceFeed' && <NamespaceFeed />}</div>
-      <div>{activeTab === 'Profile' && <Profile />}</div>
-
+      <div>{activeTab === 'Verify' && <VerifyContent />}</div>
+      <div>{activeTab === 'Register' && <RegisterContent />}</div>
+      <div>{activeTab === 'MyAssets' && <MyAssets />}</div>
     </Panel>
   );
 }

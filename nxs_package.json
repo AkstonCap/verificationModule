@@ -1,9 +1,9 @@
 {
-  "name": "distordia_verification",
-  "displayName": "Distordia Verification",
-  "version": "0.1.0",
+  "name": "content_verification",
+  "displayName": "Content Verification",
+  "version": "1.0.0",
   "targetWalletVersion": "3.1.5",
-  "description": "A Nexus Wallet Module built with React and Redux, designed to verify user content and enhance security within the creator ecosystem.",
+  "description": "Onchain content verification module for the Nexus blockchain. Register content as assets using the Distordia content standard, and verify URL authenticity against creator identity (genesis ID or namespace).",
   "type": "app",
   "entry": "dist/index.html",
   "icon": "dist/react.svg",

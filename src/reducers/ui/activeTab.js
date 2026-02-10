@@ -1,6 +1,6 @@
 import * as TYPE from 'actions/types';
 
-const initialState = 'NewsFeed'; // Set your default tab here
+const initialState = 'Verify';
 
 export default (state = initialState, action) => {
   switch (action.type) {
