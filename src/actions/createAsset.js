@@ -68,7 +68,7 @@ export const createContentAsset = async (data) => {
     const result = await secureApiCall('assets/create/asset', {
       format: 'JSON',
       name: assetName,
-      json: JSON.stringify(fields),
+      json: fields,
     });
 
     showSuccessDialog({
