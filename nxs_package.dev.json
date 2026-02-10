@@ -1,8 +1,8 @@
 {
-  "name": "_dev_distordia_verification",
-  "displayName": "Distordia Verification Development",
-  "description": "Distordia Verification module development environment",
+  "name": "_dev_content_verification",
+  "displayName": "Content Verification Dev",
+  "description": "Content Verification module development environment",
   "type": "app",
   "entry": "http://localhost:24011/dev.html",
-  "icon": "dist/react.svg"
+  "icon": "dist/verification-logo.svg"
 }

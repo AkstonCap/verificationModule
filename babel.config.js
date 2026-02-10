@@ -1,4 +1,5 @@
-const browserslistQuery = require('nexus-module/lib/browserslistQuery').default;
+// Target the Chromium version used by the Nexus Wallet (Electron-based)
+const browserslistQuery = 'Chrome >= 90';
 
 const reactOptimizePreset = [
   '@babel/plugin-transform-react-constant-elements',

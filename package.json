@@ -1,7 +1,7 @@
 {
-  "name": "distordia_verification",
+  "name": "content_verification",
   "version": "0.1.0",
-  "description": "Distordia content verification module environment",
+  "description": "Onchain content verification module for Nexus blockchain",
   "devDependencies": {
     "@babel/core": "^7.24.9",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",

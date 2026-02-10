@@ -19,13 +19,3 @@ export const switchMyNamespace = (namespace) => ({
   type: TYPE.SWITCH_MY_NAMESPACE,
   payload: namespace,
 });
-
-/*
-export const showConnections = () => ({
-  type: TYPE.SHOW_CONNECTIONS,
-});
-
-export const hideConnections = () => ({
-  type: TYPE.HIDE_CONNECTIONS,
-});
-*/
