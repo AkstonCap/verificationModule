@@ -6,8 +6,8 @@
   "description": "Onchain content verification module for the Nexus blockchain. Register content as assets using the Distordia content standard, and verify URL authenticity against creator identity (genesis ID or namespace).",
   "type": "app",
   "entry": "dist/index.html",
-  "icon": "dist/react.svg",
-  "files": ["dist/index.html", "dist/react.svg", "dist/js/app.js"],
+  "icon": "dist/verification-logo.svg",
+  "files": ["dist/index.html", "dist/verification-logo.svg", "dist/js/app.js"],
   "author": {
     "name": "AkstonCap"
   }
